@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
+import com.model2.mvc.service.customer.CustomerService;
+import com.model2.mvc.service.domain.Customer;
 import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.user.UserService;
 
@@ -30,64 +32,26 @@ public class CustomerContorller {
 	
 	///Field
 	@Autowired
-	@Qualifier("userServiceImpl")
-	private UserService userService;
+	@Qualifier("customerServiceImpl")
+	private CustomerService customerService;
 
 	public CustomerContorller(){
 		System.out.println(this.getClass());
 	}
 	
-	@RequestMapping( value="getUser", method=RequestMethod.GET )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
-		
-		System.out.println("/user/getUser : GET");
-		//Business Logic
-		User user = userService.getUser(userId);
-		// Model 과 View 연결
-		model.addAttribute("user", user);
-		
-		return "forward:/user/getUser.jsp";
-	}
-	//////////////////////////////////////////////////////////  추가된 부분 ///////////////////////////////////////////////////////////////
-	@RequestMapping( value="getJsonUser/{userId}", method=RequestMethod.GET )
-	public void getJsonUser(	@PathVariable String userId, 
-									 			Model model) throws Exception{
-		System.out.println("/getJsonUser/getUser : GET");
-		//Business Logic
-		User user = userService.getUser(userId);
-		// Model 과 View 연결
-		model.addAttribute("user", user);
-	}
-	//////////////////////
-	
 	//===========================================
 	//===========================================
 	@RequestMapping( value="getJsonCustomer/{customerTel}", method=RequestMethod.GET)
-	public void getJsonCustomer(	@PathVariable String customerTel
-										) throws Exception{
+	public void getJsonCustomer(	@PathVariable String customerTel,
+			Model model	) throws Exception{
 		System.out.println("/getJsonCustomer/getUser : GET" + customerTel);
-		
-	}
-	//===========================================
-	//===========================================
-	
-	//////////////////////////////////////////////////////////  추가된 부분 ///////////////////////////////////////////////////////////////
-	@RequestMapping( value="jsonLogin", method=RequestMethod.POST )
-	public void jsonLogin(	@RequestBody User user,
-												HttpSession session,
-												Model model) throws Exception{
-	
-		System.out.println("/user/jsonLogin : POST");
 		//Business Logic
-		System.out.println("::"+user);
-		User dbUser=userService.getUser(user.getUserId());
-		
-		if( user.getPassword().equals(dbUser.getPassword())){
-			session.setAttribute("user", dbUser);
-		}
-		
-		model.addAttribute("user", dbUser);
+		Customer customer = customerService.getCustomer(customerTel);
+		// Model 과 View 연결
+		model.addAttribute("customer",customer);
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//===========================================
+	//===========================================
+	
 	
 }
