@@ -1,17 +1,12 @@
 package com.model2.mvc.service.customer.impl;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.model2.mvc.common.Search;
 import com.model2.mvc.service.customer.CustomerDao;
 import com.model2.mvc.service.domain.Customer;
-import com.model2.mvc.service.domain.User;
-import com.model2.mvc.service.user.UserDao;
 
 
 //==> 회원관리 DAO CRUD 구현

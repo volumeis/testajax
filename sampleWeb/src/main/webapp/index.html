@@ -1,10 +1,100 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-Hello!
-</body>
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--jQuery v2.2.2 -->
+        <script src="../lib/jquery/jquery.js"></script>
+        <!--bootstrap 3.3.6-->
+        <script src="../lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+        
+        <title>User Login</title>
+        
+        
+        <script type="text/javascript">
+		 $(function() {
+			//==> userId LINK Event 연결처리
+			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			//==> 3 과 1 방법 조합 : $(".className tagName:filter함수") 사용함.
+			$( "#call" ).on("click" , function() {
+					//Debug..
+					//alert(  $( this ).text().trim() );
+					
+					//////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
+					//self.location ="/user/getUser?userId="+$(this).text().trim();
+					////////////////////////////////////////////////////////////////////////////////////////////
+					var userId = $(this).text().trim();
+					
+					$.ajax( 
+							{
+								/* url : "/customer/getJsonCustomer/"+userId , */
+								url : "/customer/getJsonCustomer/123asd" ,
+								method : "GET" ,
+								dataType : "json" ,
+								headers : {
+									"Accept" : "application/json",
+									"Content-Type" : "application/json"
+								},
+								success : function(JSONData , status) {
+
+									//Debug...
+									//alert(status);
+									//Debug...
+									//alert("JSONData : \n"+JSONData);
+									
+									var displayValue = "<h3>"
+																+"전화번호 : "+JSONData.customer.customerTel+"<br/>"
+																+"비밀번호 : "+JSONData.customer.password+"<br/>"
+																/* +"이메일 : "+JSONData.user.email+"<br/>"
+																+"ROLE : "+JSONData.user.role+"<br/>"
+																+"등록일 : "+JSONData.user.regDate+"<br/>" */
+																+"</h3>";
+									//Debug...									
+									//alert(displayValue);
+									$("h3").remove();
+									/* $( "#"+userId+"" ).html(displayValue); */
+									$( "#db" ).html(displayValue);
+								}
+						});
+						////////////////////////////////////////////////////////////////////////////////////////////
+					
+			});
+			
+			//==> userId LINK Event End User 에게 보일수 있도록 
+			$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
+			
+		});	
+        </script>
+    </head>
+    <body>
+     
+        <div style ="margin-top:60px">
+            <div>
+                <img src="../image/login.png" class="center-block" style="width:70%">
+            </div>
+        </div>
+        <div>
+          <div class="center-block" style="width:70%;">
+            <input type="email" class="form-control" id="InputPhone" placeholder="휴대폰">
+          </div>
+          <div class="center-block" style="width:70%; margin-top:10px">
+            <input type="password" class="form-control" id="InputPassword" placeholder="비밀번호">
+          </div>
+        </div>
+            <div class="center-block" style="width:70%; margin-top:20px">     
+                <a href="html/storeList.html"  class="btn btn-default btn-block">로그인</a>
+                <div id="call">123asd </div>
+            </div>
+            
+        <div id="from-id">123  </div>
+        <div id="from-pwd">456 </div>
+        <div id="db"></div>
+        
+            <div style="margin:65px 0px 0px 0px; text-align:center">
+                <a >새 Baguette 계정 만들기</a>
+            </div>
+    </body>
 </html>

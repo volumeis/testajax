@@ -50,7 +50,7 @@
 
 	<!--  :: ViewResolver 선언 -->	
     <bean id="viewResolver"
-				class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
+				class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
 	
 	
 	<!--	
@@ -65,7 +65,8 @@
 	<mvc:resources mapping="/css/**" location="/css/" />
    	<mvc:resources mapping="/images/**" location="/images/" />
    	<mvc:resources mapping="/javascript/**" location="/javascript/" />
-   	
+   	<mvc:resources mapping="/html/**" location="/html/" />
+   	<mvc:resources mapping="/**"  location="/" />   	
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
 			:: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->

@@ -1,0 +1,17 @@
+<div data-role="panel" id="menuPanel" data-position="left" data-display="push" data-theme="a">
+    <div data-role="header">
+        <h1>Panel</h1>
+    </div>
+    <ul data-role="listview" data-inset="true">
+        <li><a>Listview</a></li>
+        <li><a href="#locale">locale</a></li>
+        <li>
+            <div id = "goList">storeList</div>
+        </li>
+    </ul>
+</div>
+<script>
+    $('#goList').on('click',function(){
+        $.mobile.loadPage("./storeList.html");
+    });
+</script>

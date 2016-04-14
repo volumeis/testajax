@@ -1,0 +1,108 @@
+<!-- css -->
+<link rel="stylesheet" href="../lib/jquery-mobile-bower/css/jquery.mobile-1.4.5.css" />
+<link rel="stylesheet" href="../lib/slider-pro/css/slider-pro.css">
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="../css/storeList.css">
+
+<!-- js -->
+<script src="../lib/jquery/jquery.js"></script>
+<script src="../lib/jquery-mobile-bower/js/jquery.mobile-1.4.5.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.js"></script>
+<scropt src="../lib/slider-pro/js/jquery.sliderPro.js"></scropt>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        $('#recommendStoreCarousel').sliderPro({
+            fade: true,
+            //            height : 150,
+            forceSize: 'fullWidth',
+            fadeCaption: false
+        });
+    });
+</script>
+<script src="../js/storeList.js"></script>
+<script>
+    $(document).on('pagebeforeshow', '[data-role="page"]', function () {
+        $.mobile.activePage.find('[data-role="header"]').load("header.html", function () {
+            $(this).parent().trigger('pagecreate');
+        });
+        //            $.mobile.activePage.find('[data-role="footer"]').load("footer.html", function () {
+        //                $(this).parent().trigger('pagecreate');
+        //            });
+        //            $.mobile.activePage.find('[data-role="panel"]').load("menuPanel.html", function () {
+        //                $(this).parent().trigger('pagecreate');
+    });
+</script>
+<!-- //////////////////////////////////////////////////////////////////////////   -->
+
+<div data-role="page">
+    
+    <div data-role="header" data-fullscreen="true" data-position="fixed"> </div>
+
+    <div data-role="main" id="asdasd" class="ui-content">
+        <!-- carouselStart-->
+        <div class="slider-pro" id="recommendStoreCarousel">
+            <div class="sp-slides">
+                <!-- Slide 1 -->
+                <div class="sp-slide">
+                    <img class="sp-image" src="../image/recommendStore00.jpg" />
+                    <p class="cp-caption" style="red">가나다가나다ㅂㅈㄷㅂㅈㄷ 아아아아</p>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="sp-slide">
+                    <img class="sp-image" src="../image/recommendStore01.jpg" />
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="sp-slide">
+                    <img class="sp-image" src="../image/recommendStore02.jpg" />
+                    <h3 class="sp-layer">Lorem ipsum dolor sit asdfsdfdsfdsfsdfmet</h3>
+                    <p class="sp-layer">consectetur adipiㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇsicasdasdasdasing elit</p>
+                </div>
+            </div>
+        </div>
+        <!-- carouselEnd-->
+
+        <button id="pantest" type="button" data-role="none" class="btn btn-success">
+            asdas
+        </button>
+
+        <!-- storeListStart -->
+        <div id="storeListDiv" class="row">
+            <div class="col-xs-12">
+                <div class="storeListImageDiv">
+                    <!--                <a href="./storeHome.html" data-transition="">-->
+                    <!--                    <img src="../image/store01.jpg"></a>-->
+                    <div class="caption">
+                        <div class="address">강남구 강남대로</div>
+                        <div class="store-name"><strong>ABC 빵집</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="storeListImageDiv">
+                    <img src="../image/store02.jpg">
+                    <div class="caption">
+                        <div class="address">강남구 테헤란로</div>
+                        <div class="store-name"><strong>DEF 빵집</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="storeListImageDiv">
+                    <img src="../image/store03.jpg">
+                    <div class="caption">
+                        <div class="address">강서구 강서로</div>
+                        <div class="store-name"><strong>GHI 빵집</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- storeListEnd -->
+    </div>
+    <!-- end main-->
+</div>
+
+<!-- //////////////////////////////////////////////////////////////////////////   -->

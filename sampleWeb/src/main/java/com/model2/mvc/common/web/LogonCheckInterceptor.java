@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.model2.mvc.service.domain.User;
+import com.model2.mvc.service.domain.Customer;
 
 
 /*
@@ -38,7 +38,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		//==> 로그인 유무확인
 		HttpSession session = request.getSession(true);
-		User user = (User)session.getAttribute("user");
+		Customer user = (Customer)session.getAttribute("user");
 
 		//==> 로그인한 회원이라면...
 		if(   user != null   )  {
