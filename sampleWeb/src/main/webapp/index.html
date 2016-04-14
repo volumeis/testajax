@@ -19,19 +19,13 @@
 			//==> userId LINK Event 연결처리
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			//==> 3 과 1 방법 조합 : $(".className tagName:filter함수") 사용함.
-			$( "#call" ).on("click" , function() {
-					//Debug..
-					//alert(  $( this ).text().trim() );
-					
-					//////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
-					//self.location ="/user/getUser?userId="+$(this).text().trim();
-					////////////////////////////////////////////////////////////////////////////////////////////
-					var userId = $(this).text().trim();
+			$( "#login" ).on("click" , function() {
+				//	var customerTel = $(this).value().trim();
 					
 					$.ajax( 
 							{
 								/* url : "/customer/getJsonCustomer/"+userId , */
-								url : "/customer/getJsonCustomer/123asd" ,
+								url : "/customer/getJsonCustomer/"+customerTel ,
 								method : "GET" ,
 								dataType : "json" ,
 								headers : {
@@ -40,32 +34,16 @@
 								},
 								success : function(JSONData , status) {
 
-									//Debug...
-									//alert(status);
-									//Debug...
-									//alert("JSONData : \n"+JSONData);
-									
-									var displayValue = "<h3>"
-																+"전화번호 : "+JSONData.customer.customerTel+"<br/>"
-																+"비밀번호 : "+JSONData.customer.password+"<br/>"
-																/* +"이메일 : "+JSONData.user.email+"<br/>"
-																+"ROLE : "+JSONData.user.role+"<br/>"
-																+"등록일 : "+JSONData.user.regDate+"<br/>" */
-																+"</h3>";
-									//Debug...									
-									//alert(displayValue);
-									$("h3").remove();
-									/* $( "#"+userId+"" ).html(displayValue); */
+									if(("#password").val() != JSONData.customer.password){
+										$alert("일치x");
+															
+									} else { 
+										$alert("일치합니다.");
+									}
 									$( "#db" ).html(displayValue);
 								}
 						});
-						////////////////////////////////////////////////////////////////////////////////////////////
-					
 			});
-			
-			//==> userId LINK Event End User 에게 보일수 있도록 
-			$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
-			
 		});	
         </script>
     </head>
@@ -77,18 +55,21 @@
             </div>
         </div>
         <div>
-          <div class="center-block" style="width:70%;">
-            <input type="email" class="form-control" id="InputPhone" placeholder="휴대폰">
-          </div>
-          <div class="center-block" style="width:70%; margin-top:10px">
-            <input type="password" class="form-control" id="InputPassword" placeholder="비밀번호">
-          </div>
-        </div>
-            <div class="center-block" style="width:70%; margin-top:20px">     
-                <a href="html/storeList.html"  class="btn btn-default btn-block">로그인</a>
-                <div id="call">123asd </div>
-            </div>
+        <form>
+			<div class="center-block" style="width:70%;">
+			  <input type="text" class="form-control" id="customerTel" placeholder="휴대폰">
+			</div>
+			<div class="center-block" style="width:70%; margin-top:10px">
+			    <input type="text" class="form-control" id="password" placeholder="비밀번호">
+			  </div>
+			</div>
+			<div class="center-block" style="width:70%; margin-top:20px">     
+			 <a  id="login"  class="btn btn-default btn-block">로그인</a>
+			 
+			 </div>
+        </form>
             
+                <div id="call">123asd </div>
         <div id="from-id">123  </div>
         <div id="from-pwd">456 </div>
         <div id="db"></div>
